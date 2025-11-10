@@ -1,0 +1,240 @@
+[1mdiff --git a/nuxt-app/.gitignore b/nuxt-app/.gitignore[m
+[1mnew file mode 100644[m
+[1mindex 0000000..4a7f73a[m
+[1m--- /dev/null[m
+[1m+++ b/nuxt-app/.gitignore[m
+[36m@@ -0,0 +1,24 @@[m
+[32m+[m[32m# Nuxt dev/build outputs[m
+[32m+[m[32m.output[m
+[32m+[m[32m.data[m
+[32m+[m[32m.nuxt[m
+[32m+[m[32m.nitro[m
+[32m+[m[32m.cache[m
+[32m+[m[32mdist[m
+[32m+[m
+[32m+[m[32m# Node dependencies[m
+[32m+[m[32mnode_modules[m
+[32m+[m
+[32m+[m[32m# Logs[m
+[32m+[m[32mlogs[m
+[32m+[m[32m*.log[m
+[32m+[m
+[32m+[m[32m# Misc[m
+[32m+[m[32m.DS_Store[m
+[32m+[m[32m.fleet[m
+[32m+[m[32m.idea[m
+[32m+[m
+[32m+[m[32m# Local env files[m
+[32m+[m[32m.env[m
+[32m+[m[32m.env.*[m
+[32m+[m[32m!.env.example[m
+[1mdiff --git a/nuxt-app/README.md b/nuxt-app/README.md[m
+[1mnew file mode 100644[m
+[1mindex 0000000..25b5821[m
+[1m--- /dev/null[m
+[1m+++ b/nuxt-app/README.md[m
+[36m@@ -0,0 +1,75 @@[m
+[32m+[m[32m# Nuxt Minimal Starter[m
+[32m+[m
+[32m+[m[32mLook at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.[m
+[32m+[m
+[32m+[m[32m## Setup[m
+[32m+[m
+[32m+[m[32mMake sure to install dependencies:[m
+[32m+[m
+[32m+[m[32m```bash[m
+[32m+[m[32m# npm[m
+[32m+[m[32mnpm install[m
+[32m+[m
+[32m+[m[32m# pnpm[m
+[32m+[m[32mpnpm install[m
+[32m+[m
+[32m+[m[32m# yarn[m
+[32m+[m[32myarn install[m
+[32m+[m
+[32m+[m[32m# bun[m
+[32m+[m[32mbun install[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32m## Development Server[m
+[32m+[m
+[32m+[m[32mStart the development server on `http://localhost:3000`:[m
+[32m+[m
+[32m+[m[32m```bash[m
+[32m+[m[32m# npm[m
+[32m+[m[32mnpm run dev[m
+[32m+[m
+[32m+[m[32m# pnpm[m
+[32m+[m[32mpnpm dev[m
+[32m+[m
+[32m+[m[32m# yarn[m
+[32m+[m[32myarn dev[m
+[32m+[m
+[32m+[m[32m# bun[m
+[32m+[m[32mbun run dev[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32m## Production[m
+[32m+[m
+[32m+[m[32mBuild the application for production:[m
+[32m+[m
+[32m+[m[32m```bash[m
+[32m+[m[32m# npm[m
+[32m+[m[32mnpm run build[m
+[32m+[m
+[32m+[m[32m# pnpm[m
+[32m+[m[32mpnpm build[m
+[32m+[m
+[32m+[m[32m# yarn[m
+[32m+[m[32myarn build[m
+[32m+[m
+[32m+[m[32m# bun[m
+[32m+[m[32mbun run build[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mLocally preview production build:[m
+[32m+[m
+[32m+[m[32m```bash[m
+[32m+[m[32m# npm[m
+[32m+[m[32mnpm run preview[m
+[32m+[m
+[32m+[m[32m# pnpm[m
+[32m+[m[32mpnpm preview[m
+[32m+[m
+[32m+[m[32m# yarn[m
+[32m+[m[32myarn preview[m
+[32m+[m
+[32m+[m[32m# bun[m
+[32m+[m[32mbun run preview[m
+[32m+[m[32m```[m
+[32m+[m
+[32m+[m[32mCheck out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.[m
+[1mdiff --git a/nuxt-app/app.vue b/nuxt-app/app.vue[m
+[1mnew file mode 100644[m
+[1mindex 0000000..2750b5c[m
+[1m--- /dev/null[m
+[1m+++ b/nuxt-app/app.vue[m
+[36m@@ -0,0 +1,33 @@[m
+[32m+[m[32m<template>[m
+[32m+[m[32m  <div>[m
+[32m+[m[32m    <header class="nav">[m
+[32m+[m[32m      <NuxtLink to="/">Home</NuxtLink> |[m
+[32m+[m[32m      <NuxtLink to="/about">About</NuxtLink> |[m
+[32m+[m[32m      <NuxtLink to="/contact">Contact</NuxtLink>[m
+[32m+[m[32m    </header>[m
+[32m+[m
+[32m+[m[32m    <main>[m
+[32m+[m[32m      <NuxtPage />[m
+[32m+[m[32m    </main>[m
+[32m+[m[32m  </div>[m
+[32m+[m[32m</template>[m
+[32m+[m
+[32m+[m[32m<style scoped>[m
+[32m+[m[32m.nav {[m
+[32m+[m[32m  padding: 20px;[m
+[32m+[m[32m  background: #f2f2f2;[m
+[32m+[m[32m  text-align: center;[m
+[32m+[m[32m}[m
+[32m+[m[32ma {[m
+[32m+[m[32m  color: #007bff;[m
+[32m+[m[32m  text-decoration: none;[m
+[32m+[m[32m  margin: 0 10px;[m
+[32m+[m[32m}[m
+[32m+[m[32ma:hover {[m
+[32m+[m[32m  text-decoration: underline;[m
+[32m+[m[32m}[m
+[32m+[m[32mmain {[m
+[32m+[m[32m  padding: 40px;[m
+[32m+[m[32m  text-align: center;[m
+[32m+[m[32m}[m
+[32m+[m[32m</style>[m
+[1mdiff --git a/nuxt-app/components/BlogForm.vue b/nuxt-app/components/BlogForm.vue[m
+[1mnew file mode 100644[m
+[1mindex 0000000..0b5095e[m
+[1m--- /dev/null[m
+[1m+++ b/nuxt-app/components/BlogForm.vue[m
+[36m@@ -0,0 +1,51 @@[m
+[32m+[m[32m<template>[m
+[32m+[m[32m  <form @submit.prevent="submit">[m
+[32m+[m[32m    <input v-model="title" placeholder="Title" />[m
+[32m+[m[32m    <textarea v-model="content" rows="6" placeholder="Content"></textarea>[m
+[32m+[m[32m    <div style="display:flex;gap:.5rem;justify-content:flex-end">[m
+[32m+[m[32m      <button type="submit">{{ editing ? 'Save' : 'Publish' }}</button>[m
+[32m+[m[32m      <button v-if="editing" type="button" @click="cancel">Cancel</button>[m
+[32m+[m[32m    </div>[m
+[32m+[m[32m  </form>[m
+[32m+[m[32m</template>[m
+[32m+[m
+[32m+[m[32m<script setup>[m
+[32m+[m[32mimport { ref, watch } from 'vue'[m
+[32m+[m[32mimport { useBlogStore } from '~/stores/blogs'[m
+[32m+[m[32mconst store = useBlogStore()[m
+[32m+[m[32mconst config = useRuntimeConfig()[m
+[32m+[m
+[32m+[m[32mconst title = ref('')[m
+[32m+[m[32mconst content = ref('')[m
+[32m+[m
+[32m+[m[32mconst editing = computed(() => !!store.currentEdit)[m
+[32m+[m
+[32m+[m[32mwatch(() => store.currentEdit, (val) => {[m
+[32m+[m[32m  if (val) {[m
+[32m+[m[32m    title.value = val.title[m
+[32m+[m[32m    content.value = val.content[m
+[32m+[m[32m  } else {[m
+[32m+[m[32m    title.value = ''[m
+[32m+[m[32m    content.value = ''[m
+[32m+[m[32m  }[m
+[32m+[m[32m})[m
+[32m+[m
+[32m+[m[32mconst submit = async () => {[m
+[32m+[m[32m  const t = title.value.trim()[m
+[32m+[m[32m  const c = content.value.trim()[m
+[32m+[m[32m  if (!t || !c) return[m
+[32m+[m[32m  if (editing.value) {[m
+[32m+[m[32m    await store.updateBlog(config.public.apiBase, store.currentEdit.id, t, c)[m
+[32m+[m[32m  } else {[m
+[32m+[m[32m    await store.addBlog(config.public.apiBase, t, c)[m
+[32m+[m[32m  }[m
+[32m+[m[32m  title.value = ''[m
+[32m+[m[32m  content.value = ''[m
+[32m+[m[32m}[m
+[32m+[m[32mconst cancel = () => store.cancelEditing()[m
+[32m+[m[32m</script>[m
+[32m+[m
+[32m+[m[32m<style scoped>[m
+[32m+[m[32minput, textarea { width:100%; padding:.6rem; border-radius:8px; border:1px solid #ddd; margin-bottom:.5rem }[m
+[32m+[m[32mbutton { background:linear-gradient(90deg,#667eea,#764ba2); color:#fff; border:none; padding:.5rem .8rem; border-radius:8px }[m
+[32m+[m[32m</style>[m
+[1mdiff --git a/nuxt-app/components/BlogList.vue b/nuxt-app/components/BlogList.vue[m
+[1mnew file mode 100644[m
+[1mindex 0000000..23b66de[m
+[1m--- /dev/null[m
+[1m+++ b/nuxt-app/components/BlogList.vue[m
+[36m@@ -0,0 +1,40 @@[m
+[32m+[m[32m<template>[m
+[32m+[m[32m  <div>[m
+[32m+[m[32m    <div v-if="blogs.length">[m
+[32m+[m[32m      <div v-for="b in blogs" :key="b.id" class="card">[m
+[32m+[m[32m        <div v-if="store.currentEdit && store.currentEdit.id === b.id">[m
+[32m+[m[32m          <!-- editing is handled in BlogForm; this is normal view -->[m
+[32m+[m[32m          <small>Editing...</small>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m        <div v-else>[m
+[32m+[m[32m          <h3>{{ b.title }}</h3>[m
+[32m+[m[32m          <p>{{ b.content }}</p>[m
+[32m+[m[32m          <small>{{ formatDate(b.created_at) }}</small>[m
+[32m+[m[32m          <div style="text-align:right;margin-top:.5rem">[m
+[32m+[m[32m            <button @click="store.startEditing(b)">Edit</button>[m
+[32m+[m[32m            <button @click="remove(b.id)">Delete</button>[m
+[32m+[m[32m          </div>[m
+[32m+[m[32m        </div>[m
+[32m+[m[32m      </div>[m
+[32m+[m[32m    </div>[m
+[32m+[m[32m    <p v-else>No blogs yet.</p>[m
+[32m+[m[32m  </div>[m
+[32m+[m[32m</template>[m
+[32m+[m
+[32m+[m[32m<script setup>[m
+[32m+[m[32mimport { computed } from 'vue'[m
+[32m+[m[32mimport { useBlogStore } from '~/stores/blogs'[m
+[32m+[m[32mconst store = useBlogSt
