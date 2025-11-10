@@ -1,0 +1,138 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            padding: 30px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .blog-post {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .blog-post h2 {
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        .blog-post p {
+            line-height: 1.6;
+            color: #444;
+        }
+
+        small {
+            display: block;
+            margin-top: 10px;
+            color: #777;
+        }
+
+        .links {
+            margin-top: 15px;
+        }
+
+        .edit-link,
+        .delete-link {
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .edit-link {
+            background-color: #007bff;
+            margin-right: 8px;
+        }
+
+        .edit-link:hover {
+            background-color: #0056b3;
+        }
+
+        .delete-link {
+            background-color: #dc3545;
+        }
+
+        .delete-link:hover {
+            background-color: #a71d2a;
+        }
+
+        .create-btn {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .create-btn:hover {
+            background-color: #218838;
+        }
+
+        @media (max-width: 600px) {
+            .create-btn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 28px;
+                text-align: center;
+                padding: 0;
+                margin: 0;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>All Blog Posts</h1>
+
+        <!-- Create button (desktop shows inline, mobile becomes floating) -->
+        <a href="{% url 'create_blog' %}" class="create-btn">+</a>
+
+        {% for blog in blogs %}
+            <div class="blog-post">
+                <h2>{{ blog.title }}</h2>
+                <p>{{ blog.content }}</p>
+                <small>Published on: {{ blog.created_at }}</small>
+                <div class="links">
+                    <a href="{% url 'edit_blog' blog.id %}" class="edit-link">Edit</a>
+                    <a href="{% url 'delete_blog' blog.id %}" class="delete-link">Delete</a>
+                </div>
+            </div>
+        {% empty %}
+            <p>No blog posts yet!</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
