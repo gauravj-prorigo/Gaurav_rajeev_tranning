@@ -1,0 +1,19 @@
+<template>
+  <div class="page">
+    <h1>ℹ️ About Page</h1>
+    <p>This is the About page of our Nuxt.js app.</p>
+
+    <nav>
+      <NuxtLink to="/">Home</NuxtLink> |
+      <NuxtLink to="/about">About</NuxtLink> |
+      <NuxtLink to="/contact">Contact</NuxtLink>
+    </nav>
+  </div>
+</template>
+
+<style scoped>
+.page {
+  text-align: center;
+  padding: 50px;
+}
+</style>
