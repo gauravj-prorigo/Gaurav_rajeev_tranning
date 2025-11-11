@@ -43,6 +43,7 @@ class loginuser(AbstractUser):
 class Task(models.Model):
      title = models.CharField(max_length=255)
      completed = models.BooleanField(default=False)
+     order = models.PositiveIntegerField(default=0)
      created_at = models.DateTimeField(auto_now_add=True)
      updated_at = models.DateTimeField(auto_now=True)
 
