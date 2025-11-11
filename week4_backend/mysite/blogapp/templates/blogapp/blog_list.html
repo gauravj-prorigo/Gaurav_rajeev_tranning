@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        h2 {
+            color: #333;
+        }
+        .blog-card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 12px;
+            background-color: #f9f9f9;
+        }
+        button {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            background-color: #1976d2;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>All Blog Posts</h2>
+    <div id="blogs"></div>
+
+    <button id="logoutBtn">Logout</button>
+
+    <script>
+        async function loadBlogs() {
+            const token = localStorage.getItem('access');
+
+            if (!token) {
+                alert('You must log in first.');
+                window.location.href = '/blogs/login/';
+                return;
+            }
+
+            const response = await fetch('/blogs/api/blogs/', {
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                const blogContainer = document.getElementById('blogs');
+                blogContainer.innerHTML = '';
+
+                if (data.length === 0) {
+                    blogContainer.innerHTML = '<p>No blogs available.</p>';
+                }
+
+                data.forEach(blog => {
+                    const div = document.createElement('div');
+                    div.className = 'blog-card';
+                    div.innerHTML = `
+                        <h3>${blog.title}</h3>
+                        <p>${blog.content}</p>
+                        <small>Created at: ${new Date(blog.created_at).toLocaleString()}</small>
+                    `;
+                    blogContainer.appendChild(div);
+                });
+            } else {
+                alert('Failed to fetch blogs. Your token may have expired.');
+                window.location.href = '/blogs/login/';
+            }
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('access');
+            localStorage.removeItem('refresh');
+            window.location.href = '/blogs/login/';
+        });
+
+        loadBlogs();
+    </script>
+</body>
+</html>
