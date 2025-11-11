@@ -12,7 +12,9 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from .serializers import RegisterSerializer, LoginSerialize ,TaskSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
-from .permissions import IsAuthenticatedUser, IsEmployee, IsAdmin
+# from .permissions import IsAuthenticatedUser, IsEmployee, IsAdmin
+from rest_framework.decorators import action
+from rest_framework.response import Response
 
 # Create your views here.
 
@@ -139,24 +141,26 @@ def person_api(request):
 class BlogViewSet(viewsets.ModelViewSet):
     queryset = Blog.objects.all()
     serializer_class = blogserilazers
-    permission_classes = [IsAuthenticated]  # default
+    permission_classes = [AllowAny]
+    authentication_classes = []
+    # permission_classes = [IsAuthenticated]  # default
 
-    def get_permissions(self):
-        if self.action in ['list', 'retrieve']:
-            # everyone logged in can view
-            return [IsAuthenticatedUser()]
-        elif self.action == 'create':
-            # employee or admin can create
-            return [IsEmployee() | IsAdmin()]
-        elif self.action in ['update', 'partial_update']:
-            # only admin can edit
-            return [IsAdmin()]
-        elif self.action == 'destroy':
-            # only admin can delete
-            return [IsAdmin()]
-        else:
-            # fallback
-            return [IsAuthenticated()]
+    # def get_permissions(self):
+    #     if self.action in ['list', 'retrieve']:
+    #         # everyone logged in can view
+    #         return [IsAuthenticatedUser()]
+    #     elif self.action == 'create':
+    #         # employee or admin can create
+    #         return [IsEmployee() | IsAdmin()]
+    #     elif self.action in ['update', 'partial_update']:
+    #         # only admin can edit
+    #         return [IsAdmin()]
+    #     elif self.action == 'destroy':
+    #         # only admin can delete
+    #         return [IsAdmin()]
+    #     else:
+    #         # fallback
+    #         return [IsAuthenticated()]
     
     
     
@@ -193,6 +197,13 @@ class LoginView(APIView):
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all().order_by('-created_at')
+    queryset = Task.objects.all().order_by('order')
     serializer_class = TaskSerializer
+    
+    @action(detail=False, methods=['post'])
+    def reorder(self, request):
+     order_list = request.data.get('order', [])
+     for index, task_id in enumerate(order_list):
+        Task.objects.filter(id=task_id).update(order=index)
+     return Response({"status": "ok"})
      
