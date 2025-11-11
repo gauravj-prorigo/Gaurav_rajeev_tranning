@@ -3,9 +3,11 @@
     <div class="container">
       <header class="header">
         <h1>My App — Blogs & Tasks</h1>
+        
         <nav>
           <button :class="{ active: view==='blogs' }" @click="view='blogs'">Blogs</button>
           <button :class="{ active: view==='tasks' }" @click="view='tasks'">Tasks</button>
+          <button> <NuxtLink to="/login">Contact</NuxtLink></button>
         </nav>
       </header>
 
