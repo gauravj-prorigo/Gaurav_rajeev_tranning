@@ -4,6 +4,7 @@
       <NuxtLink to="/">Home</NuxtLink> |
       <NuxtLink to="/about">About</NuxtLink> |
       <NuxtLink to="/contact">Contact</NuxtLink>
+       <NuxtLink to="/login">Contact</NuxtLink>
     </header>
 
     <main>
